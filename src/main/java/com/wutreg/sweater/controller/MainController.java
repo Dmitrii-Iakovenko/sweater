@@ -14,18 +14,18 @@ import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
-public class MessageController {
+public class MainController {
 
     private final MessageService messageService;
 
-    @GetMapping
+    @GetMapping("/main")
     public String showAll(Map<String, Object> model) {
         List<Message> messages = messageService.findAll();
         model.put("messages", messages);
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String addNewAndShowAll(
         @RequestParam String text, @RequestParam String tag,
         Map<String, Object> model

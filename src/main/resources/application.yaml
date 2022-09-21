@@ -14,3 +14,10 @@ spring:
         show_sql: true
         use_sql_comments: true
         format_sql: true
+
+  #  для передачи csrf от Spring Security
+  mustache:
+    servlet:
+      expose-request-attributes: true
+
+
