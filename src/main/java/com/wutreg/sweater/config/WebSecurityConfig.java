@@ -1,43 +1,44 @@
 package com.wutreg.sweater.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-@Configuration
+import javax.sql.DataSource;
+
 @EnableWebSecurity
-public class WebSecurityConfig {
+@RequiredArgsConstructor
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-            .authorizeHttpRequests(request -> request
-                .antMatchers("/", "/login").permitAll()
+    private final DataSource dataSource;
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/", "/registration").permitAll()
                 .anyRequest().authenticated()
-            )
-            .formLogin(form -> form
+            .and()
+                .formLogin()
                 .loginPage("/login")
                 .permitAll()
-            )
-            .logout(LogoutConfigurer::permitAll);
-
-        return httpSecurity.build();
+            .and()
+                .logout()
+                .permitAll()
+            .and()
+                .httpBasic();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-            .username("user")
-            .password("123")
-            .roles("USER")
-            .build();
-        return new InMemoryUserDetailsManager(userDetails);
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+            .dataSource(dataSource)
+            .passwordEncoder(NoOpPasswordEncoder.getInstance())
+            .usersByUsernameQuery("select username, password, active from users where username=?")
+            .authoritiesByUsernameQuery("select u.username, ur.roles from users u inner join user_role ur on u.id = ur.user_id where u.username=?");
+
     }
 }
