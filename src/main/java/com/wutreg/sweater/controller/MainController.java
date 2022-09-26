@@ -1,9 +1,12 @@
 package com.wutreg.sweater.controller;
 
 import com.wutreg.sweater.entity.Message;
+import com.wutreg.sweater.entity.User;
 import com.wutreg.sweater.service.MessageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,14 +30,16 @@ public class MainController {
 
     @PostMapping("/main")
     public String addNewAndShowAll(
-        @RequestParam String text, @RequestParam String tag,
-        Map<String, Object> model
+        @AuthenticationPrincipal User author,
+        @RequestParam String text,
+        @RequestParam String tag,
+        Model model
     ) {
-        Message message = new Message(text, tag);
+        Message message = new Message(text, tag, author);
         messageService.save(message);
 
         List<Message> messages = messageService.findAll();
-        model.put("messages", messages);
+        model.addAttribute("messages", messages);
         return "main";
     }
 
