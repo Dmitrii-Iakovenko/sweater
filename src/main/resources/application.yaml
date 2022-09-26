@@ -16,8 +16,7 @@ spring:
         format_sql: true
 
   #  для передачи csrf от Spring Security
-  mustache:
-    servlet:
+  freemarker:
       expose-request-attributes: true
 
 

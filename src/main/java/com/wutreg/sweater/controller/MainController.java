@@ -22,9 +22,15 @@ public class MainController {
     private final MessageService messageService;
 
     @GetMapping("/main")
-    public String showAll(Map<String, Object> model) {
-        List<Message> messages = messageService.findAll();
-        model.put("messages", messages);
+    public String showAll(
+        @RequestParam(required = false, defaultValue = "") String filter,
+        Model model
+    ) {
+        List<Message> messages = (Objects.isNull(filter) || filter.isEmpty())
+            ? messageService.findAll()
+            : messageService.findByTag(filter);
+        model.addAttribute("messages", messages);
+        model.addAttribute("filter", filter);
         return "main";
     }
 
@@ -43,12 +49,4 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/filter")
-    public String filterAndShow(@RequestParam String filter, Map<String, Object> model) {
-        List<Message> messages = (Objects.isNull(filter) || filter.isEmpty())
-            ? messageService.findAll()
-            : messageService.findByTag(filter);
-        model.put("messages", messages);
-        return "main";
-    }
 }

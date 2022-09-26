@@ -7,10 +7,8 @@
 
 ## Technologies Used
 * Java 17
-* Spring Boot
-* Spring MVC
-* Spring JPA
-* Mustache
+* Spring Boot, MVC, JPA, Security
+* Freemarker/Mustache
 * Lombok
 * Maven
 
