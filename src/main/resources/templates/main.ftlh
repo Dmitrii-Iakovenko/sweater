@@ -5,6 +5,7 @@
     <h1>Добавить нового пользователя</h1>
     <div>
         <@l.logout />
+        <span><a href="/users">User list</a></span>
     </div>
 
 
