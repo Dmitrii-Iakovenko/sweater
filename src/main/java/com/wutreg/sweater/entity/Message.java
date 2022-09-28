@@ -23,6 +23,8 @@ public class Message {
     @JoinColumn(name = "user_id", foreignKey=@ForeignKey(name = "fk_messages_users"))
     private User author;
 
+    private String filename;
+
     public Message(String text, String tag, User author) {
         this.text = text;
         this.tag = tag;

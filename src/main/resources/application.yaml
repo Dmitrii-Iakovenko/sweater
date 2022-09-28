@@ -19,4 +19,11 @@ spring:
   freemarker:
       expose-request-attributes: true
 
+  # Настройка ограничений на загрузку файлов
+  servlet:
+    multipart:
+      max-file-size: 128KB
+      max-request-size: 128KB
 
+upload:
+  path: 'd:\git\letsCode\2022.09.19 - sweater\upload\'
