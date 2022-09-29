@@ -2,9 +2,9 @@
 <#import "parts/login.ftl" as l>
 
 <@c.page>
-<h1>Добавить нового пользователя</h1>
+<h1 class="mt-4 mb-5">Добавить нового пользователя</h1>
 <span style="color: red">${message!}</span>
-<@l.login "/registration" />
+<@l.login "/registration" true />
 </@c.page>
 
 

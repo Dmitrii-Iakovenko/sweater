@@ -11,6 +11,7 @@
 * Freemarker/Mustache
 * Lombok
 * Maven
+* Bootstrap 5
 
 ## Install and Run
 ```bash
