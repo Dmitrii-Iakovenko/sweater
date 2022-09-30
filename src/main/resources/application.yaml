@@ -25,5 +25,18 @@ spring:
       max-file-size: 128KB
       max-request-size: 128KB
 
+  # Настройки Spring Mail Sender
+  mail:
+    host: smtp.gmail.com
+    protocol:  smtps
+    port: 465
+    username: [ваша почта на gmail]
+    password: [пароль от приложения]
+
+mail:
+  debug: true
+
+
+# Папка для хранения картинок
 upload:
   path: 'd:\git\letsCode\2022.09.19 - sweater\upload\'

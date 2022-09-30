@@ -7,7 +7,7 @@
 
 ## Technologies Used
 * Java 17
-* Spring Boot, MVC, JPA, Security
+* Spring Boot, MVC, JPA, Security, Mail
 * Freemarker/Mustache
 * Lombok
 * Maven
@@ -30,3 +30,10 @@ password:   postgres
 
 Если надо поменять, правим файл:
 src/main/resources/application.yaml
+
+## Mail
+Для рассылки используется smtp сервер gmail
+Настройки хранятся в application.yaml
+Нужно указать ваш логин и пароль от приложения (не путать с паролем от почты).
+[Настройки для почты Gmail](https://support.google.com/mail/answer/7104828)
+[Подробнее о пароле приложения](https://support.google.com/accounts/answer/185833)

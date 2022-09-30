@@ -1,41 +1,44 @@
 package com.wutreg.sweater.controller;
 
-import com.wutreg.sweater.domen.Role;
 import com.wutreg.sweater.entity.User;
-import com.wutreg.sweater.repository.UserRepository;
+import com.wutreg.sweater.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Set;
 
 @Controller
-@RequestMapping("/registration")
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    @GetMapping
+    @GetMapping("/registration")
     public String showPage() {
         return "registration";
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public String addUser(User user, Model model) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
-
-        if (userFromDb != null) {
-            model.addAttribute("message", "User exists!");
+        if (!userService.add(user)) {
+            model.addAttribute("message", "Такой пользователь уже существует!");
             return "registration";
         }
-
-        user.setActive(true);
-        user.setRoles(Set.of(Role.USER));
-        userRepository.save(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/activate/{code}")
+    public String activateUser(@PathVariable String code, Model model) {
+        boolean isActivated = userService.activateUser(code);
+
+        if (isActivated) {
+            model.addAttribute("message", "Пользователь успешно активирован");
+        } else {
+            model.addAttribute("message", "Код активации не найден!");
+        }
+
+        return "login";
     }
 }

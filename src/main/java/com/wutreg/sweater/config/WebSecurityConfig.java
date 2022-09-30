@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .requestCache()
                 .disable()
             .authorizeRequests()
-                .antMatchers("/", "/registration", "/static").permitAll()
+                .antMatchers("/", "/registration", "/static", "/activate/*").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
