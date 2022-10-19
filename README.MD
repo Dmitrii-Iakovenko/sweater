@@ -32,8 +32,17 @@ password:   postgres
 src/main/resources/application.yaml
 
 ## Mail
-Для рассылки используется smtp сервер gmail
-Настройки хранятся в application.yaml
-Нужно указать ваш логин и пароль от приложения (не путать с паролем от почты).
-[Настройки для почты Gmail](https://support.google.com/mail/answer/7104828)
-[Подробнее о пароле приложения](https://support.google.com/accounts/answer/185833)
+Для рассылки используется smtp сервер gmail  
+Настройки хранятся в application.yaml  
+Нужно указать ваш логин и пароль от приложения (не путать с паролем от почты).  
+[Настройки для почты Gmail](https://support.google.com/mail/answer/7104828)  
+[Подробнее о пароле приложения](https://support.google.com/accounts/answer/185833)  
+
+
+## Upload 
+Картинки добавленные к приложениям сохраняются в папку:  
+"C:\Git\sweater\upload"  
+Если нужно поменять - application.yaml
+
+## How to use
+Link: http://localhost:8080/
