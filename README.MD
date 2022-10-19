@@ -7,7 +7,7 @@
 
 ## Technologies Used
 * Java 17
-* Spring Boot, MVC, JPA, Security, Mail
+* Spring Boot, MVC, JPA, Security, Mail, Flyway
 * Freemarker/Mustache
 * Lombok
 * Maven
@@ -46,3 +46,5 @@ src/main/resources/application.yaml
 
 ## How to use
 Link: http://localhost:8080/
+login: admin
+pass: 123

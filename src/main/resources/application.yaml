@@ -6,14 +6,15 @@ spring:
     password: postgres
 
   jpa:
+    generate-ddl: false
+    show-sql: false
     hibernate:
-      ddl-auto: update
-
-    properties:
-      hibernate:
-        show_sql: true
-        use_sql_comments: true
-        format_sql: true
+      ddl-auto: validate
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        use_sql_comments: true
+#        format_sql: true
 
   #  для передачи csrf от Spring Security
   freemarker:
@@ -39,4 +40,4 @@ mail:
 
 # Папка для хранения картинок
 upload:
-  path: 'd:\git\letsCode\2022.09.19 - sweater\upload\'
+  path: 'C:\Git\sweater\upload\'

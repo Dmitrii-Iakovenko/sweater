@@ -20,6 +20,11 @@
                     <a class="nav-link" aria-current="page" href="/users">Пользователи</a>
                 </li>
                 </#if>
+                <#if user??>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/users/profile">Профиль</a>
+                </li>
+                </#if>
             </ul>
 
             <div class="d-flex">
