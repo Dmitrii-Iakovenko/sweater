@@ -3,7 +3,11 @@
 
 <@c.page>
     <h1 class="mt-4 mb-5">Войти</h1>
-    <span style="color: red">${message!}</span>
+    <#if Session?? && Session.SPRING_SECURITY_LAST_EXCEPTION??>
+        <div class="alert alert-danger" role="alert">
+            ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}
+        </div>
+    </#if>
     <@l.login "/login" false />
 </@c.page>
 

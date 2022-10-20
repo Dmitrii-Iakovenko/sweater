@@ -18,11 +18,25 @@
                         Добавить сообщение
                     </button>
                 </div>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse<#if message??>show</#if>" id="collapseExample">
                     <form class="col mt-3" method="post" action="/main" enctype="multipart/form-data">
                         <div class="input-group mb-3">
-                            <input class="form-control"type="text" name="text" placeholder="Введите сообщение"/>
-                            <input class="form-control"type="text" name="tag" placeholder="Тэг"/>
+                            <input class="form-control<#if textError??> is-invalid</#if>"
+                                   value="<#if message??>${message.text}</#if>"
+                                   type="text" name="text" placeholder="Введите сообщение"/>
+                            <input class="form-control<#if tagError??> is-invalid</#if>"
+                                   value="<#if message??>${message.tag}</#if>"
+                                   type="text" name="tag" placeholder="Тэг"/>
+                            <#if textError??>
+                                <div class="invalid-feedback">
+                                    ${textError}
+                                </div>
+                            </#if>
+                            <#if tagError??>
+                                <div class="invalid-feedback">
+                                    ${tagError}
+                                </div>
+                            </#if>
                         </div>
                         <div class="input-group">
                             <input type="file" name="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">

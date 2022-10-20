@@ -3,8 +3,10 @@ package com.wutreg.sweater.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "messages")
@@ -16,7 +18,13 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "Поле не должно быть пустым!")
+    @Length(max = 2048, message = "Message too long (more to 2kB)")
     private String text;
+
+    @NotBlank(message = "Поле не должно быть пустым!")
+    @Length(max = 255, message = "Message too long (more to 255)")
     private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)

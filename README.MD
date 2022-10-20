@@ -7,11 +7,12 @@
 
 ## Technologies Used
 * Java 17
-* Spring Boot, MVC, JPA, Security, Mail, Flyway
+* Spring Boot, MVC, JPA, Security, Mail, Flyway, Validation
 * Freemarker/Mustache
 * Lombok
 * Maven
 * Bootstrap 5
+* BCrypt
 
 ## Install and Run
 ```bash
