@@ -10,11 +10,6 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: validate
-#    properties:
-#      hibernate:
-#        show_sql: true
-#        use_sql_comments: true
-#        format_sql: true
 
   #  для передачи csrf от Spring Security
   freemarker:
@@ -34,6 +29,15 @@ spring:
     username: [ваша почта на gmail]
     password: [пароль от приложения]
 
+  session:
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
+
+  # import application-captcha.yaml config
+  profiles:
+    include: 'captcha'
+
 mail:
   debug: true
 
@@ -41,3 +45,5 @@ mail:
 # Папка для хранения картинок
 upload:
   path: 'C:\Git\sweater\upload\'
+
+

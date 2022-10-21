@@ -7,12 +7,13 @@
 
 ## Technologies Used
 * Java 17
-* Spring Boot, MVC, JPA, Security, Mail, Flyway, Validation
+* Spring Boot, MVC, JPA, Security, Mail, Flyway, Validation, Session
 * Freemarker/Mustache
 * Lombok
 * Maven
 * Bootstrap 5
 * BCrypt
+* reCAPTCHA
 
 ## Install and Run
 ```bash
@@ -45,7 +46,12 @@ src/main/resources/application.yaml
 "C:\Git\sweater\upload"  
 Если нужно поменять - application.yaml
 
+## reCAPTCHA
+[admins panel](https://www.google.com/recaptcha/admin)  
+Ключи сайта и секретный - можно посмотреть в настройках  
+Для работы лучше подходит reCAPTCHA v2  
+
 ## How to use
-Link: http://localhost:8080/
-login: admin
-pass: 123
+Link: http://localhost:8080/  
+login: admin  
+pass: 123  
