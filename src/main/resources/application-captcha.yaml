@@ -1,4 +1,0 @@
-captcha:
-  client: [ваш ключ сайта]
-  server: [ваш секретный ключ]
-  url:  https://www.google.com/recaptcha/api/siteverify
