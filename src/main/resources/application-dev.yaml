@@ -42,18 +42,12 @@ captcha:
 
 
 mail:
-  debug: false
+  debug: true
 
 
 # Папка для хранения картинок
-# Должно совпадат с alias в nginx!!!
 upload:
-  path: '/upload'
-
-
+  path: 'C:\Git\sweater\upload\'
 
 hostname:
-  [ваш сайт]
-
-#server:
-#  port: 80
+  localhost:8080

@@ -14,6 +14,7 @@
 * Bootstrap 5
 * BCrypt
 * reCAPTCHA
+* nginx
 
 ## Install and Run
 ```bash
@@ -55,3 +56,9 @@ src/main/resources/application.yaml
 Link: http://localhost:8080/  
 login: admin  
 pass: 123  
+
+## nginx
+config: /etc/nginx/sites-enabled/default  
+alias - должен совпадать с upload.path в application.yaml  
+reload config: nginx -s reload  
+если файлы не видны в свиттере - chmod -R 777 . (на весь путь)  

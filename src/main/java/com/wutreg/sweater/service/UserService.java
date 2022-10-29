@@ -4,6 +4,7 @@ import com.wutreg.sweater.domen.Role;
 import com.wutreg.sweater.entity.User;
 import com.wutreg.sweater.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +22,9 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final MailService mailService;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${hostname}")
+    private String hostname;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -56,9 +60,10 @@ public class UserService implements UserDetailsService {
             String message = String.format(
                 """
                 Hello, %s!
-                Welcome to Sweater. Please, visit next link: http://localhost:8080/activate/%s
+                Welcome to Sweater. Please, visit next link: http://%s/activate/%s
                 """,
                 user.getUsername(),
+                hostname,
                 user.getActivationCode()
             );
             mailService.send(user.getEmail(), "Activation code", message);
