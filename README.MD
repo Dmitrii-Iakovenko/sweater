@@ -1,9 +1,14 @@
 # Sweater app
 
-[Link youtube playlist](https://www.youtube.com/playlist?list=PLU2ftbIeotGoGSEUf54LQH-DgiQPF2XRO)
+Проект - представляет из себя очередной клон Twitter.  
+Основная цель - набить руку в основных технологиях популярного стека.  
 
-Проект созданный на основании плейлиста на ютубе с целью набить руку на создании контроллеров, энтити, тестов, 
-документаци и так далее.
+
+## Example running application
+http://help.wutreg.com
+login: admin  
+pass: 123
+
 
 ## Technologies Used
 * Java 17
@@ -16,14 +21,26 @@
 * reCAPTCHA
 * nginx
 
-## Install and Run
+
+## Deploy (Prod mode)
+```bash
+./scripts/deploy.sh
+```
+
+## Install and Run (Dev mode)
 ```bash
 git clone https://github.com/Dmitrii-Iakovenko/sweater.git
 cd sweater/
 chmod +x mvnw
-./mvnw spring-boot:run 
+./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 http://localhost:8080/
+
+
+## Run with IDEA (Dev mode)
+Run \ Edit Configuration \ Program arguments:
+--spring.profiles.active=dev
+
 
 ## Postgres
 По умолчанию используется база данных:  
@@ -32,7 +49,9 @@ login:  postgres
 password:   postgres  
 
 Если надо поменять, правим файл:
-src/main/resources/application.yaml
+src/main/resources/application.yaml (для прода)
+src/main/resources/application-dev.yaml (для dev)
+
 
 ## Mail
 Для рассылки используется smtp сервер gmail  
@@ -44,21 +63,22 @@ src/main/resources/application.yaml
 
 ## Upload 
 Картинки добавленные к приложениям сохраняются в папку:  
-"C:\Git\sweater\upload"  
+'/upload' (prod)
+'C:\Git\sweater\upload' (dev)
+Должно совпадат с alias в nginx!!!
 Если нужно поменять - application.yaml
+
 
 ## reCAPTCHA
 [admins panel](https://www.google.com/recaptcha/admin)  
 Ключи сайта и секретный - можно посмотреть в настройках  
 Для работы лучше подходит reCAPTCHA v2  
 
-## How to use
-Link: http://localhost:8080/  
-login: admin  
-pass: 123  
 
 ## nginx
 config: /etc/nginx/sites-enabled/default  
 alias - должен совпадать с upload.path в application.yaml  
 reload config: nginx -s reload  
 если файлы не видны в свиттере - chmod -R 777 . (на весь путь)  
+
+
