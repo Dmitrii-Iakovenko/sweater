@@ -5,7 +5,7 @@
 
 
 ## Example running application
-http://help.wutreg.com
+http://help.wutreg.com  
 login: admin  
 pass: 123
 
@@ -38,7 +38,7 @@ http://localhost:8080/
 
 
 ## Run with IDEA (Dev mode)
-Run \ Edit Configuration \ Program arguments:
+Run \ Edit Configuration \ Program arguments:  
 --spring.profiles.active=dev
 
 
@@ -63,10 +63,10 @@ src/main/resources/application-dev.yaml (для dev)
 
 ## Upload 
 Картинки добавленные к приложениям сохраняются в папку:  
-'/upload' (prod)
-'C:\Git\sweater\upload' (dev)
-Должно совпадат с alias в nginx!!!
-Если нужно поменять - application.yaml
+'/upload' (prod)  
+'C:\Git\sweater\upload' (dev)  
+Должно совпадат с alias в nginx!!!  
+Если нужно поменять - application.yaml  
 
 
 ## reCAPTCHA
